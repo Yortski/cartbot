@@ -60,9 +60,7 @@ This simulates a live-selling environment with an automated checkout flow.
 
 ---
 
-## System Architecture
-
-### Flow Overview
+## Initial Flow
 
 1. User comments "mine" on a Facebook post
 2. Facebook sends webhook event
@@ -78,11 +76,11 @@ This simulates a live-selling environment with an automated checkout flow.
 
 ---
 
-## Tech Stack
+## Requirements
 
 ### Automation
 
-* n8n (workflow automation )
+* n8n (workflow automation | can skip, will see if graph api can directly communicate with a system backend )
 * Facebook Graph API (facebook webhooks and messaging)
 
   !!! I may need to wait for a day or two. Meta for developers has a policy that an account must be on a device in a reasonable amount of time to keep an account safe. Here in my computer, my account has been logged in for a long time yet i was still able to trigger the block, forced to wait.
