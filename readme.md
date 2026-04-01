@@ -17,22 +17,12 @@ This simulates a live-selling environment with an automated checkout flow.
 
 ## Goals
 
-### Primary Goals
-
 * Detect Facebook post comments in real-time
 * Filter keyword triggers (e.g., "mine")
 * Link posts to products
 * Manage product stock
 * Create and update user carts
 * Send automated Messenger responses
-
-### Secondary Goals (Future Enhancements)
-
-* Full checkout flow
-* Payment integration (GCash, bank, etc.)
-* Order tracking
-* Seller dashboard
-* Multi-product live selling
 
 ---
 
