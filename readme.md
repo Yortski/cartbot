@@ -4,9 +4,12 @@
 
 This repo defines a Messenger chatbot project integrated with Facebook Page interactions that enables automated live-selling behavior.
 
-When a user comments "mine" on a product post:
+The system is designed for Facebook Live selling, where a seller can dynamically control which product is currently being sold.
+
+When a user comments "mine" during a live session:
 
 * The system detects the comment
+* Identifies the currently active product
 * Verifies product availability
 * Automatically adds the item to the user’s cart
 * Sends a Messenger message confirming the action
@@ -17,9 +20,9 @@ This simulates a live-selling environment with an automated checkout flow.
 
 ## Goals
 
-* Detect Facebook post comments in real-time
+* Detect Facebook Live comments in real-time
 * Filter keyword triggers (e.g., "mine")
-* Link posts to products
+* Track live sessions and active products
 * Manage product stock
 * Create and update user carts
 * Send automated Messenger responses
@@ -29,28 +32,34 @@ This simulates a live-selling environment with an automated checkout flow.
 ## Core Features
 
 ### 1. Comment Trigger System
-* Listens to new comments on Facebook posts
+* Listens to new comments on Facebook Live videos
 * Filters for keyword: "mine"
 * Extracts:
   * User ID (PSID)
-  * Post ID
+  * Live Video ID
   * Comment timestamp
 
-### 2. Product Mapping
-* Each Facebook post should corresponds to a product
-* Products are identified using a post_id
+### 2. Live Session Management
+* Tracks active Facebook Live sessions
+* Associates incoming comments with a live session
+* Maintains session state (active, ended)
 
-### 3. Stock Validation
+### 3. Active Product Control
+* Seller can set a currently active product during a live session
+* Only one product is active at a time
+* All valid "mine" comments are mapped to the active product
+
+### 4. Stock Validation
 * Checks if product stock is available
 * Prevents overselling via atomic updates (to be implemented later)
 
-### 4. Cart System (Chat-Based)
+### 5. Cart System (Chat-Based)
 * Each user has an active cart
 * On successful typing of "mine":
-  * Add product (quantity = 1) to cart
+  * Add active product (quantity = 1) to cart
   * Create cart if none exists
 
-### 5. Messenger Notification
+### 6. Messenger Notification
 * Sends a message to the user confirming:
   * Product name
   * Price
@@ -62,17 +71,23 @@ This simulates a live-selling environment with an automated checkout flow.
 
 ## Initial Flow
 
-1. User comments "mine" on a Facebook post
-2. Facebook sends webhook event
-3. n8n processes the event
-4. System identifies the related product
-5. System checks stock availability
-6. If available:
-   * Decrement stock
-   * Add item to cart
-   * Send Messenger message
-7. If not available:
-   * either notify user or ignore (to decide on)
+1. Seller starts Facebook Live
+2. System creates or identifies an active live session
+3. Seller sets an active product via control interface
+4. User comments "mine" on the live video
+5. Facebook sends webhook event
+6. n8n processes the event
+7. System identifies the corresponding live session
+8. System retrieves current active product
+9. System checks stock availability
+10. If available:
+    * Decrement stock
+    * Add item to cart
+    * Send Messenger message
+11. If not available:
+    * either notify user or ignore (to decide on)
+12. If no active product:
+    * ignore or notify user (to decide on)
 
 ---
 
@@ -105,7 +120,16 @@ This simulates a live-selling environment with an automated checkout flow.
 * price
 * stock
 * image_url
-* post_id
+
+### Live Session
+
+* id
+* page_id
+* live_video_id
+* status (active, ended)
+* active_product_id
+* started_at
+* ended_at
 
 ### Cart
 
@@ -125,7 +149,8 @@ This simulates a live-selling environment with an automated checkout flow.
 
 ## Specifics
 
-* Each Facebook post will represent a single product (might change on per image)
+* Products are dynamically assigned during live sessions
+* Only one product is active at a time per live session
 * Users interact using a consistent Facebook account
 * Messenger events (sending and updating) is to follow Facebook’s policy window on chat interactions by bots
 
@@ -142,12 +167,13 @@ This simulates a live-selling environment with an automated checkout flow.
 
 - [ ] Set up Supabase database with sample products
 - [ ] Create Developer account
-- [ ] Create Facebook test page and sample product posts
+- [ ] Create Facebook test page and live setup
 - [ ] Configure Facebook webhook to n8n
+- [ ] Implement live session tracking
+- [ ] Implement active product control
 - [ ] Implement comment trigger logic in n8n
 - [ ] Implement cart creation and item addition
 - [ ] Send Messenger confirmation message
 - [ ] Test end-to-end flow
 
 ---
-
