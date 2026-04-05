@@ -165,8 +165,8 @@ This simulates a live-selling environment with an automated checkout flow.
 
 ## Development Approach
 
-- [ ] Set up Supabase database with sample products
-- [ ] Create Developer account
+- [X] Set up Supabase database with sample products
+- [X] Create Developer account
 - [ ] Create Facebook test page and live setup
 - [ ] Configure Facebook webhook to n8n
 - [ ] Implement live session tracking
