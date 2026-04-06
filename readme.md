@@ -167,8 +167,8 @@ This simulates a live-selling environment with an automated checkout flow.
 
 - [X] Set up Supabase database with sample products
 - [X] Create Developer account
-- [ ] Create Facebook test page and live setup
-- [ ] Configure Facebook webhook to n8n
+- [X] Create Facebook test page and live setup
+- [X] Configure Facebook webhook to n8n
 - [ ] Implement live session tracking
 - [ ] Implement active product control
 - [ ] Implement comment trigger logic in n8n
