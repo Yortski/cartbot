@@ -115,41 +115,50 @@ Execution State Example
   "files_generated": [],
   "errors": []
 }
-Constraints and Design Rules
-Executor must only use retrieved context
-Planner must produce granular, actionable steps
-Orchestrator must remain rule-based (not AI-driven)
-Agents should have narrow, well-defined responsibilities
-All outputs must be validated before moving forward
-Tech Stack
+```
+
+## Constraints and Design Rules
+- Executor must only use retrieved context
+- Planner must produce granular, actionable steps
+- Orchestrator must remain rule-based (not AI-driven)
+- Agents should have narrow, well-defined responsibilities
+- All outputs must be validated before moving forward
+
+## Tech Stack
 Language Model API: OpenAI API or local LLM
 Orchestration: Python (initial), LangGraph (optional)
 RAG Framework: LlamaIndex or LangChain
 Vector Database: FAISS or Chroma
 Target Framework: Flutter SDK
-Future Enhancements
+
+## Future Enhancements
 Add Debugging Agent with runtime error handling
 Integrate Flutter CLI execution for real builds
 Add memory system for long-term project context
 Support multi-platform outputs (web, mobile, desktop)
 Implement CI/CD pipeline integration
 Add human-in-the-loop review interface
-Development Phases
-Phase 1: Foundation
-Build Planner, Executor, Reviewer
-Implement basic orchestrator
-Set up RAG pipeline
-Phase 2: Stability
-Add Debugger and Test Generator
-Improve validation and retry logic
-Phase 3: Specialization
-Add UI Agent
-Improve Flutter-specific outputs
-Phase 4: Scaling
-Introduce LangGraph
-Optimize performance and state handling
-Expected Limitations
-Not a full replacement for human developers
-May require manual corrections for complex features
-Dependent on quality of knowledge base and prompts
-Flutter-specific edge cases may require iteration
+
+## Development Phases
+### Phase 1: Foundation
+- Build Planner, Executor, Reviewer
+- Implement basic orchestrator
+- Set up RAG pipeline
+
+### Phase 2: Stability
+- Add Debugger and Test Generator
+- Improve validation and retry logic
+
+### Phase 3: Specialization
+- Add UI Agent
+- Improve Flutter-specific outputs
+
+### Phase 4: Scaling
+- Introduce LangGraph
+- Optimize performance and state handling
+
+### Expected Limitations
+- Not a full replacement for human developers
+- May require manual corrections for complex features
+- Dependent on quality of knowledge base and prompts
+- Flutter-specific edge cases may require iteration
